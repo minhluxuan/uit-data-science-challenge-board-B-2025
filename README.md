@@ -7,15 +7,24 @@ This repository contains code for training and running inference on an ensemble 
 ```
 .
 ├── checkpoints/             # Model checkpoints (35 models)
-├──── 0/
-├──── 1/
-├──── ...
+│   ├── 0/
+│   ├── 1/
+│   ├── ...
+│   └── 34/
 ├── data/                    # Dataset files
-├── orig_results/            # Previous inference results and submissions
-├── results/                 # The new inference results will be store here
+├── orig_results/            # Previous inference results
+│   ├── 0/
+│   ├── 1/
+│   ├── ...
+│   └── 34/
+├── results/                 # New inference results will be stored here
+│   ├── 0/
+│   ├── 1/
+│   ├── ...
+│   └── 34/
 ├── download_checkpoints.py  # Script to download pre-trained checkpoints
-├── train.py                 # Training script for all models
-├── infer.py                 # Inference script for individual models
+├── train.py                 # Train all models
+├── infer.py                 # Run inference for individual models
 ├── context_reduction.py     # Preprocess data by reducing irrelevant contexts
 ├── correct_bmd1905.py       # Preprocess data by correcting lexical errors in prompts
 ├── ensemble.py              # Final ensemble inference script
