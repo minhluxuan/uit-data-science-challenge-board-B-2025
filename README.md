@@ -6,16 +6,20 @@ This repository contains code for training and running inference on an ensemble 
 
 ```
 .
-├── checkpoints/          # Model checkpoints (35 models)
-├── data/                 # Dataset files
-├── old_results/             # Previous inference results and submissions
-├── new_results/             # The new inference results will be store here
+├── checkpoints/             # Model checkpoints (35 models)
+├──── 0/
+├──── 1/
+├──── ...
+├── data/                    # Dataset files
+├── orig_results/            # Previous inference results and submissions
+├── results/                 # The new inference results will be store here
 ├── download_checkpoints.py  # Script to download pre-trained checkpoints
-├── train.py             # Training script for all models
-├── infer.py             # Inference script for individual models
-├── preprocess.py        # Data preprocessing script
-├── ensemble.py       # Final ensemble inference script
-└── private-test-submit.csv   # Best results submitted on CodaBench
+├── train.py                 # Training script for all models
+├── infer.py                 # Inference script for individual models
+├── context_reduction.py     # Preprocess data by reducing irrelevant contexts
+├── correct_bmd1905.py       # Preprocess data by correcting lexical errors in prompts
+├── ensemble.py              # Final ensemble inference script
+└── private-test-submit.csv  # Best results submitted on CodaBench
 ```
 
 ## Setup
