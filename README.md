@@ -15,7 +15,7 @@ This repository contains code for training and running inference on an ensemble 
 ├── infer.py             # Inference script for individual models
 ├── preprocess.py        # Data preprocessing script
 ├── ensemble.py       # Final ensemble inference script
-└── previous_submit.py   # Best results submitted on CodaBench
+└── private-test-submit.csv   # Best results submitted on CodaBench
 ```
 
 ## Setup
@@ -29,11 +29,11 @@ pip install -r requirements.txt
 
 You can either train models from scratch or use pre-trained checkpoints.
 
-### Option 1: Using previous test logits (Recommend)
+### Option 1: Using previous generated test logits (Recommend)
 
 1. Ensemble all previously generated test logits:
 ```bash
-python ensemble.py
+python ensemble.py --orig
 ```
 This will ensemble the predictions from all models and create the final `submit.csv`.
 
@@ -67,7 +67,7 @@ This will ensemble the predictions from all models and create the final `submit.
   - LoRA rank (r): 32
   - LoRA alpha: 64
   - Learning rate: 1e-4
-  - Batch size: 8
+  - Batch size: 16
   - Epochs: 2
   - Max sequence length: 512
 
