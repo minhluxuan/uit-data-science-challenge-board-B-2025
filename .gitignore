@@ -31,11 +31,11 @@ logs/
 # data/*.csv
 
 # Pytorch model files and tensors
-*.pt
-*.pth
-*.bin
-*.ckpt
-*.safetensors
+# *.pt
+# *.pth
+# *.bin
+# *.ckpt
+# *.safetensors
 
 # Cache
 .cache/
