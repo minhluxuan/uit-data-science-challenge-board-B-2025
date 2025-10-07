@@ -8,12 +8,14 @@ This repository contains code for training and running inference on an ensemble 
 .
 ├── checkpoints/          # Model checkpoints (35 models)
 ├── data/                 # Dataset files
-├── results/             # Inference results and submissions
-├── download_checkpoints.py   # Script to download pre-trained checkpoints
+├── old_results/             # Previous inference results and submissions
+├── new_results/             # The new inference results will be store here
+├── download_checkpoints.py  # Script to download pre-trained checkpoints
 ├── train.py             # Training script for all models
 ├── infer.py             # Inference script for individual models
 ├── preprocess.py        # Data preprocessing script
-└── final_infer.py       # Final ensemble inference script
+├── ensemble.py       # Final ensemble inference script
+└── previous_submit.py   # Best results submitted on CodaBench
 ```
 
 ## Setup
@@ -27,7 +29,16 @@ pip install -r requirements.txt
 
 You can either train models from scratch or use pre-trained checkpoints.
 
-### Option 1: Using Pre-trained Checkpoints
+### Option 1: Using previous test logits (Recommend)
+
+1. Ensemble all previously generated test logits:
+```bash
+python ensemble.py
+```
+This will ensemble the predictions from all models and create the final `submit.csv`.
+
+### Option 2: Using Pre-trained Checkpoints
+Each model requires approximately 2 minutes for inference on an A100 40GB GPU. Therefore, 35 models take a total of 35 × 2 = 70 minutes.
 
 1. Download the pre-trained checkpoints:
 ```bash
@@ -35,46 +46,17 @@ python download_checkpoints.py
 ```
 This will download all model checkpoints to the `checkpoints/` directory.
 
-2. Preprocess the data:
-```bash
-python preprocess.py
-```
-This will create clean-reduced versions of the dataset in the `data/` directory:
-- `vihallu-train-clean-reduced.csv`
-- `vihallu-val-clean-reduced.csv`
-- `vihallu-pvtest-clean-reduced.csv`
-
-3. Run inference for all models:
+2. Run inference for all models:
 ```bash
 python infer.py
 ```
 This will generate predictions and logits for all 35 models in the `results/` directory.
 
-4. Generate final submission:
+3. Generate final submission:
 ```bash
-python final_infer.py
+python ensemble.py
 ```
 This will ensemble the predictions from all models and create the final `submit.csv`.
-
-### Option 2: Training from Scratch
-
-1. Preprocess the data (same as above):
-```bash
-python preprocess.py
-```
-
-2. Train all models:
-```bash
-python train.py
-```
-This will train 35 different models with different random seeds. Each model will be saved in the `checkpoints/{i}/best-checkpoint/` directory.
-
-- To train specific models, you can specify model IDs:
-```bash
-python train.py 0 1 2  # Train only models 0, 1, and 2
-```
-
-3. Run inference and generate final submission (same as steps 3-4 above).
 
 ## Model Architecture
 
