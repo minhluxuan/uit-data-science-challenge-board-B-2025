@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.env
+.venv
+
+# Model Checkpoints and Results
+checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# Data files
+# data/*.csv
+
+# Pytorch model files and tensors
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.safetensors
+
+# Cache
+.cache/
+.pytest_cache/
+.coverage
+
+# Temporary files
+*.bak
+*.tmp
+*~
+
+# System files
+.DS_Store
+Thumbs.db
