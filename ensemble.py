@@ -1,4 +1,5 @@
 import os
+import argparse
 import torch
 import pickle
 import numpy as np
@@ -11,9 +12,14 @@ from scipy.optimize import minimize, differential_evolution
 from sklearn.metrics import f1_score, accuracy_score
 
 
-# ===== 1. LOAD DATA =====
-root = "./results"
 n_models = 35
+
+# ===== 1. LOAD DATA =====
+parser = argparse.ArgumentParser(description="Create ensemble submission")
+parser.add_argument("--orig", action="store_true", help="Use orig_results instead of results")
+args = parser.parse_args()
+
+root = "./orig_results" if args.orig else "./results"
 
 label2id = {"no": 0, "intrinsic": 1, "extrinsic": 2}
 id2label = {v: k for k, v in label2id.items()}
@@ -91,10 +97,10 @@ def create_enhanced_features(probabilities_list, optimal_weights):
     return all_features
 print("Creating final submission with best stacking model...")
 
-with open("./results/optimal_weights.pkl", "rb") as f:
+with open(os.path.join(root, "optimal_weights.pkl"), "rb") as f:
     best_weights_de = pickle.load(f)
 
-with open("./results/final_stacking_model.pkl", "rb") as f:
+with open(os.path.join(root, "final_stacking_model.pkl"), "rb") as f:
     final_model = pickle.load(f)
 
 meta_X = create_enhanced_features(test_probabilities, best_weights_de)
@@ -103,7 +109,7 @@ final_predictions = final_model.predict(meta_X)
 
 final_labels = [id2label[pred] for pred in final_predictions]
 
-submit_df_original = pd.read_csv(f"{root}/0/submit.csv")
+submit_df_original = pd.read_csv(os.path.join(root, "0", "submit.csv"))
 ids = submit_df_original["id"].tolist()
 
 submission = pd.DataFrame({
