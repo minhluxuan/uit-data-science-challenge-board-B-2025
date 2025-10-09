@@ -97,10 +97,10 @@ def create_enhanced_features(probabilities_list, optimal_weights):
     return all_features
 print("Creating final submission with best stacking model...")
 
-with open(os.path.join(root, "optimal_weights.pkl"), "rb") as f:
+with open("./checkpoints/optimal_weights.pkl", "rb") as f:
     best_weights_de = pickle.load(f)
 
-with open(os.path.join(root, "final_stacking_model.pkl"), "rb") as f:
+with open("./checkpoints/final_stacking_model.pkl", "rb") as f:
     final_model = pickle.load(f)
 
 meta_X = create_enhanced_features(test_probabilities, best_weights_de)
