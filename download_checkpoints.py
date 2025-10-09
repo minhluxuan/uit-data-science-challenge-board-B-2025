@@ -40,9 +40,9 @@ checkpoint_links = [
 ]
 
 os.makedirs("./checkpoints", exist_ok=True)
-gdown.download("https://drive.google.com/file/d/1a8zVYZ7-cLAmTn512XLwFu23YvloK67q", "checkpoints/final_stacking_model.pkl", quiet=False, use_cookies=True, fuzzy=True)
-gdown.download("https://drive.google.com/file/d/1H4YV4jSt53IdE6UaE52Q5Tjej2dae7Rn", "checkpoints/optimal_weights.pkl", quiet=False, use_cookies=True, fuzzy=True)
+gdown.download("https://drive.google.com/file/d/1a8zVYZ7-cLAmTn512XLwFu23YvloK67q", "checkpoints/final_stacking_model.pkl", quiet=False, fuzzy=True)
+gdown.download("https://drive.google.com/file/d/1H4YV4jSt53IdE6UaE52Q5Tjej2dae7Rn", "checkpoints/optimal_weights.pkl", quiet=False, fuzzy=True)
 
 for id, link in enumerate(checkpoint_links):
     os.makedirs(f"./checkpoints/{id}", exist_ok=True)
-    gdown.download_folder(link, output=f"./checkpoints/{id}", quiet=False, use_cookies=True)
+    gdown.download_folder(link, output=f"./checkpoints/{id}", quiet=False)
