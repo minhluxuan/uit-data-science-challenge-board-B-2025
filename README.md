@@ -57,7 +57,7 @@ Each model requires approximately 2 minutes for inference on an A100 40GB GPU. T
 ```bash
 python download_checkpoints.py
 ```
-This will download all model checkpoints to the `checkpoints/` directory.
+This will download all model checkpoints to the `checkpoints/` directory. If this doesn't work due to download limitation on Drive, please use this direct link [here](https://drive.google.com/drive/folders/1HmD1ngm1Idy8WfQaqeM3v_gUljMasuLw?usp=sharing) to download the `checkpoints/`.
 
 2. Run inference for all models:
 ```bash
